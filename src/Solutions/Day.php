@@ -13,7 +13,7 @@ abstract class Day {
 	/**
 	 * The day number
 	 */
-	protected static int $day;
+	public static int $day;
 	
 	/**
 	 * Solution for part 1
