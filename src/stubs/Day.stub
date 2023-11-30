@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Solutions\DayDummyDayNumber;
+
+use App\Solutions\Day;
+
+/**
+ * The class to solve day DummyDayNumber
+ */
+final class DayDummyDayNumber extends Day {
+	/**
+	 * The day number
+	 */
+	public static int $day = DummyDayNumber;
+	
+	/**
+	 * Solution for part 1
+	 */
+	public function part1(): string {
+		$data = $this->get_data( 'input_part1.txt' );
+		dump( $data );
+		
+		return 'Part 1';
+	}
+
+	/**
+	 * Solution for part 2
+	 */
+	public function part2(): string {
+		$data = $this->get_data( 'input_part2.txt' );
+		dump( $data );
+
+		return 'Part 2';
+	}
+}
