@@ -14,6 +14,9 @@ up: install-vendor ## Install the project
 serve: ## Run the project
 	$(PHP) -S localhost:8000
 
+new_day: ## Create a new day ( make new_day day=day_number )
+	$(PHP) newday.php $(day)
+
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 install-vendor: ## Install vendor
 	$(PHP) $(COMPOSER) install
