@@ -35,10 +35,10 @@ abstract class Day {
      */
     public const DATA_SAMPLE_PART1 = 'sample_part1.txt';
 
-	/**
-	 * The sample data for part 2
-	 */
-	public const DATA_SAMPLE_PART2 = 'sample_part2.txt';
+    /**
+     * The sample data for part 2
+     */
+    public const DATA_SAMPLE_PART2 = 'sample_part2.txt';
 
     /**
      * Solution for part 1

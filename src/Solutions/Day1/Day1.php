@@ -30,7 +30,7 @@ final class Day1 extends Day {
      */
     public function part2() : string {
         $data                 = $this->get_data();
-		$calibration_document = new CalibrationDocument( $data );
+        $calibration_document = new CalibrationDocument( $data );
         $result               = $calibration_document->get_sum_calibration_values( true );
 
         return (string) $result;
