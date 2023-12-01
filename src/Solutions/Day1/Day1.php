@@ -18,20 +18,9 @@ final class Day1 extends Day {
 	 * Solution for part 1
 	 */
 	public function part1(): string {
-		$data = $this->get_data();
-
-		$calibration_values = [];
-		foreach ( $data as $line ) {
-			$digits            = str_split( $line );
-			$digits            = array_filter( $digits, 'is_numeric' );
-			$first_digit       = $digits[ array_key_first( $digits ) ];
-			$last_digit        = $digits[ array_key_last( $digits ) ];
-			$calibration_value = $first_digit . $last_digit;
-
-			$calibration_values[] = $calibration_value;
-		}
-
-		$result = array_sum( $calibration_values );
+		$data                 = $this->get_data();
+		$calibration_document = new CalibrationDocument( $data );
+		$result               = $calibration_document->get_sum_calibration_values();
 
 		return $result;
 	}
