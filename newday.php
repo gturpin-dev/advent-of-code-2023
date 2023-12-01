@@ -7,13 +7,13 @@
 use App\Services\NewDayGenerator;
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require_once __DIR__ . '/vendor/autoload.php';
+    require_once __DIR__ . '/vendor/autoload.php';
 } else {
-	die;
+    exit;
 }
 
 if ( ! isset( $argv[1] ) ) {
-	die( 'You must provide a day number.' );
+    exit( 'You must provide a day number.' );
 }
 
 $day_number = (int) $argv[1];
