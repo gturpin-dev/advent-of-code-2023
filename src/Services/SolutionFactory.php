@@ -29,7 +29,7 @@ final class SolutionFactory {
 
         echo '<h1>Solution for Day ' . $solution_class::$day . ' Part 1</h1>';
         $solution_class::$DATASET = $solution_class::DATA_PART1;
-        dump( $solution->part1() );
+        // dump( $solution->part1() );
 
         echo '<h1>Solution for Day ' . $solution_class::$day . ' Part 2</h1>';
         $solution_class::$DATASET = $solution_class::DATA_PART2;
