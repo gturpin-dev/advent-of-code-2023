@@ -13,7 +13,8 @@
     "require-dev": {
         "symfony/var-dumper": "^7.0",
         "pestphp/pest": "^2.26",
-        "laravel/pint": "^1.13"
+        "laravel/pint": "^1.13",
+        "vimeo/psalm": "^5.16"
     },
     "config": {
         "allow-plugins": {

@@ -36,7 +36,7 @@ current-tests: ## Run uncommitted tests
 unit-tests: ## Run unit tests
 	./vendor/bin/pest
 
-unit-tests-group: ## Run unit tests by group ( make unit-tests-group group=group_name )
+unit-tests-group: ## Run unit tests by group ( make unit-tests-group group=day1 )
 	./vendor/bin/pest --group=$(group)
 
 unit-tests-coverage: ## Run unit tests with coverage
@@ -48,3 +48,11 @@ code-sniffer: ## Run code sniffer
 
 code-sniffer-fix: ## Run code sniffer and fix
 	./vendor/bin/pint
+
+## —— Static analysis 🔍 ———————————————————————————————————————————————————————
+
+lint: ## Run Psalm static analysis
+	./vendor/bin/psalm
+
+lint-group: ## Run Psalm static analysis based on the group in "group" variable ( make lint-group group=Day1 )
+	./vendor/bin/psalm src/Solutions/$(group)/*.php
