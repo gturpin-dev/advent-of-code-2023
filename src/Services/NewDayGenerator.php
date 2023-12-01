@@ -22,7 +22,7 @@ final class NewDayGenerator {
 
         // Create the solution directory
         $solution_stub = self::get_solution_stub();
-        $solution_stub = preg_replace( '/\bDummyDayNumber\b/', $day_number, $solution_stub );
+        $solution_stub = preg_replace( '/\bDummyDayNumber\b/', (string) $day_number, $solution_stub );
         $solution_stub = preg_replace( '/\bDayDummyDayNumber\b/', 'Day' . $day_number, $solution_stub );
         self::maybe_mkdir( $root_dir . '/src/Solutions/Day' . $day_number );
         self::create_file( $root_dir . '/src/Solutions/Day' . $day_number . '/Day' . $day_number . '.php', $solution_stub );

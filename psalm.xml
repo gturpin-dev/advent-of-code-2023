@@ -10,6 +10,8 @@
 >
     <projectFiles>
         <directory name="src" />
+		<file name="index.php" />
+		<file name="newday.php" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
