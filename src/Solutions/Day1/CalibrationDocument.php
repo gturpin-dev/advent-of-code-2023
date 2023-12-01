@@ -75,31 +75,6 @@ final class CalibrationDocument {
      * @param string $line The line of the document
      */
     public function convert_spelled_numbers_to_digits( string $line ) : string {
-        $first_occurrence     = null;
-        $first_spelled_number = null;
-        $first_digit          = null;
-
-        // Find the first spelled number by progressively replacing the first one by another if it exists
-        foreach ( self::SPELLED_NUMBERS as $spelled_number => $digit ) {
-            $occurrence                           = strpos( $line, $spelled_number );
-            $has_occurrence                       = ( $occurrence !== false );
-            $is_occurence_before_first_occurrence = ( $occurrence < $first_occurrence );
-
-            if ( $has_occurrence && ( is_null( $first_occurrence ) || $is_occurence_before_first_occurrence ) ) {
-                $first_occurrence     = $occurrence;
-                $first_spelled_number = $spelled_number;
-                $first_digit          = $digit;
-            }
-        }
-
-        // No more spelled numbers
-        if ( is_null( $first_occurrence ) ) {
-            return $line;
-        }
-
-        // Still spelled numbers so we replace the first one
-        $line = substr_replace( $line, $first_digit, $first_occurrence, strlen( $first_spelled_number ) );
-
-        return $this->convert_spelled_numbers_to_digits( $line );
+		return strtr( $line, self::SPELLED_NUMBERS );
     }
 }
