@@ -18,8 +18,8 @@ final class CalibrationDocument {
     public function get_calibration_value( string $line ) : int {
         $digits            = str_split( $line );
         $digits            = array_filter( $digits, 'is_numeric' );
-        $first_digit       = $digits[array_key_first( $digits )];
-        $last_digit        = $digits[array_key_last( $digits )];
+        $first_digit       = $digits[array_key_first( $digits ) ?? 0];
+        $last_digit        = $digits[array_key_last( $digits ) ?? 0];
         $calibration_value = $first_digit . $last_digit;
 
         return (int) $calibration_value;

@@ -22,7 +22,7 @@ final class Day1 extends Day {
         $calibration_document = new CalibrationDocument( $data );
         $result               = $calibration_document->get_sum_calibration_values();
 
-        return $result;
+        return (string) $result;
     }
 
     /**
