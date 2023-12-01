@@ -6,6 +6,7 @@ use App\Solutions\Day;
 
 /**
  * The class to solve day DummyDayNumber
+ * https://adventofcode.com/2023/day/DummyDayNumber
  */
 final class DayDummyDayNumber extends Day {
 	/**
@@ -17,7 +18,7 @@ final class DayDummyDayNumber extends Day {
 	 * Solution for part 1
 	 */
 	public function part1(): string {
-		$data = $this->get_data( 'input_part1.txt' );
+		$data = $this->get_data();
 		dump( $data );
 		
 		return 'Part 1';
@@ -27,7 +28,7 @@ final class DayDummyDayNumber extends Day {
 	 * Solution for part 2
 	 */
 	public function part2(): string {
-		$data = $this->get_data( 'input_part2.txt' );
+		$data = $this->get_data();
 		dump( $data );
 
 		return 'Part 2';
