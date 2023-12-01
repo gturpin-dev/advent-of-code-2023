@@ -19,7 +19,6 @@ final class Day1 extends Day {
 	 */
 	public function part1(): string {
 		$data = $this->get_data();
-		dump( $data );
 
 		$calibration_values = [];
 		foreach ( $data as $line ) {
