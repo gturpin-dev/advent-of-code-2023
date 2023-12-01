@@ -16,7 +16,8 @@ final class NewDayGenerator {
 
         // Create the data directory
         self::maybe_mkdir( $root_dir . '/data/day' . $day_number );
-        self::create_file( $root_dir . '/data/day' . $day_number . '/sample.txt' );
+        self::create_file( $root_dir . '/data/day' . $day_number . '/sample_part1.txt' );
+        self::create_file( $root_dir . '/data/day' . $day_number . '/sample_part2.txt' );
         self::create_file( $root_dir . '/data/day' . $day_number . '/input_part1.txt' );
         self::create_file( $root_dir . '/data/day' . $day_number . '/input_part2.txt' );
 
