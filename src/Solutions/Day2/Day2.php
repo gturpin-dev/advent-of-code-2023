@@ -18,7 +18,7 @@ final class Day2 extends Day {
 	 * Solution for part 1
 	 */
 	public function part1(): string {
-		self::$DATASET = self::DATA_SAMPLE_PART1;
+		// self::$DATASET = self::DATA_SAMPLE_PART1;
 		$data = $this->get_data();
 		dump( $data );
 		$result = 0;
