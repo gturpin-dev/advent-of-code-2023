@@ -75,6 +75,6 @@ final class CalibrationDocument {
      * @param string $line The line of the document
      */
     public function convert_spelled_numbers_to_digits( string $line ) : string {
-		return strtr( $line, self::SPELLED_NUMBERS );
+        return strtr( $line, self::SPELLED_NUMBERS );
     }
 }
