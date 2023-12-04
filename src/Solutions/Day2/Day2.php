@@ -34,9 +34,14 @@ final class Day2 extends Day {
      * Solution for part 2
      */
     public function part2() : string {
-        $data = $this->get_data();
-        dump( $data );
+        $data   = $this->get_data();
+		$result = array_reduce( $data, function ( $total, $game ) {
+			$game   = Game::from_raw( $game );
+			$result = $game->get_minimal_set_power();
 
-        return 'Part 2';
+			return $total + $result;
+		} );
+		
+        return (string) $result;
     }
 }

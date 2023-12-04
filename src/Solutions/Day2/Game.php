@@ -65,6 +65,25 @@ final class Game {
         return true;
     }
 
+	/**
+	 * Get the sum of the minimal set power
+	 * The power of a set is defined as the multiplication of the minimal possible number of cubes for each color in the set to be valid
+	 */
+	public function get_minimal_set_power(): int {
+		$red_minimal_number   = 0;
+		$green_minimal_number = 0;
+		$blue_minimal_number  = 0;
+
+		// Get the minimal possible number of cubes for each color in the set to be valid
+		foreach ( $this->subsets as $subset ) {
+			$red_minimal_number   = max( $red_minimal_number, $subset->get_cube_number_for_color( ColorEnum::RED ) );
+			$green_minimal_number = max( $green_minimal_number, $subset->get_cube_number_for_color( ColorEnum::GREEN ) );
+			$blue_minimal_number  = max( $blue_minimal_number, $subset->get_cube_number_for_color( ColorEnum::BLUE ) );
+		}
+
+		return $red_minimal_number * $green_minimal_number * $blue_minimal_number;
+	}
+
     /**
      * Get the game id
      */
