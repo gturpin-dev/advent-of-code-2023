@@ -45,6 +45,10 @@ final class SolutionFactory {
 
     /**
      * Display the solution for the given part
+     *
+     * @param Day          $solution_instance The instance of the solution
+     * @param class-string $solution_class    The class of the solution
+     * @param string       $part_method       The method to call
      */
     protected function display_solution( Day $solution_instance, string $solution_class, string $part_method ) : void {
         echo '<h1>Solution for Day ' . $solution_class::$day . ' ' . ucfirst( $part_method ) . '</h1>';
