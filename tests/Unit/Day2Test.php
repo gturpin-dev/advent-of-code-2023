@@ -64,3 +64,31 @@ it( 'properly create CubeStack object', function () {
     expect( $cube->get_color() )->toBe( ColorEnum::RED );
     expect( $cube->is_color( ColorEnum::RED ) )->toBe( true );
 } );
+
+it( 'properly get cube number for a given color', function( string $raw_subset_data, ColorEnum $given_color, int $expected_number ) {
+	$subset = Subset::from_raw( $raw_subset_data );
+
+	expect( $subset->get_cube_number_for_color( $given_color ) )->toBe( $expected_number );
+} )->with( [
+	'Get cube number for red' => [
+		'raw_subset_data' => '12 red, 13 green, 14 blue',
+		'given_color'  => ColorEnum::RED,
+		'expected_number' => 12,
+	],
+	'Get cube number for green' => [
+		'raw_subset_data' => '12 red, 13 green, 14 blue',
+		'given_color'  => ColorEnum::GREEN,
+		'expected_number' => 13,
+	],
+	'Get cube number for blue' => [
+		'raw_subset_data' => '12 red, 13 green, 14 blue',
+		'given_color'  => ColorEnum::BLUE,
+		'expected_number' => 14,
+	],
+] );
+
+it( 'properly find the minimal subset power', function() {
+	$game = Game::from_raw( 'Game 1: 12 red, 13 green, 15 blue; 5 red, 5 green, 5 blue; 20 red, 25 green' );
+
+	expect( $game->get_minimal_set_power() )->toBe( 7500 );
+} );
