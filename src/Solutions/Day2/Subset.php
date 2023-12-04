@@ -63,18 +63,15 @@ final class Subset {
         return count( $available_cubes ) > 0;
     }
 
-	/**
-	 * Get the cube number for the given color
-	 *
-	 * @param ColorEnum $color The color to check
-	 *
-	 * @return integer
-	 */
-	public function get_cube_number_for_color( ColorEnum $color ) : int {
-		$cube = array_filter( $this->cubes, fn ( $cube ) => $cube->is_color( $color ) );
-		$cube = array_shift( $cube );
+    /**
+     * Get the cube number for the given color
+     *
+     * @param ColorEnum $color The color to check
+     */
+    public function get_cube_number_for_color( ColorEnum $color ) : int {
+        $cube = array_filter( $this->cubes, fn ( $cube ) => $cube->is_color( $color ) );
+        $cube = array_shift( $cube );
 
-		return $cube?->get_number() ?? 0;
-	}
-	
+        return $cube?->get_number() ?? 0;
+    }
 }

@@ -35,13 +35,13 @@ final class Day2 extends Day {
      */
     public function part2() : string {
         $data   = $this->get_data();
-		$result = array_reduce( $data, function ( $total, $game ) {
-			$game   = Game::from_raw( $game );
-			$result = $game->get_minimal_set_power();
+        $result = array_reduce( $data, function ( $total, $game ) {
+            $game   = Game::from_raw( $game );
+            $result = $game->get_minimal_set_power();
 
-			return $total + $result;
-		} );
-		
+            return $total + $result;
+        } );
+
         return (string) $result;
     }
 }
