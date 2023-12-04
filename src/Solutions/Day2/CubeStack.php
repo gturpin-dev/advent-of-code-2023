@@ -26,6 +26,10 @@ final class CubeStack {
 		return new self( (int) $number, ColorEnum::from( $color ) );
 	}
 
+	public function is_color( ColorEnum $color ): bool {
+		return $this->color === $color;
+	}
+
 	public function get_number(): int {
 		return $this->number;
 	}
