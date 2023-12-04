@@ -81,4 +81,13 @@ final class Game {
 	public function get_id(): int {
 		return $this->id;
 	}
+
+	/**
+	 * Get the list of subsets
+	 *
+	 * @return array<Subset>
+	 */
+	public function get_subsets(): array {
+		return $this->subsets;
+	}
 }
