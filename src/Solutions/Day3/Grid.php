@@ -37,11 +37,10 @@ final class Grid {
     /**
      * Get a specific cell value
      *
-	 * @param Position $position The position of the cell
-	 * 
-     * @throws OutOfBoundsException If the cell is out of bounds
+     * @param  Position $position The position of the cell
+     * @return string   The cell value
      *
-     * @return string The cell value
+     * @throws OutOfBoundsException If the cell is out of bounds
      */
     public function get_cell( Position $position ) : string {
         if ( ! isset( $this->data[$position->y] ) || ! isset( $this->data[$position->y][$position->x] ) ) {
@@ -93,8 +92,7 @@ final class Grid {
     /**
      * Get a specific cell value
      *
-     * @param Position $position The position of the cell
-	 * 
+     * @param  Position      $position The position of the cell
      * @return array<string> An array of cell values
      */
     public function get_adjacent_cells( Position $position ) : array {
@@ -106,52 +104,51 @@ final class Grid {
     /**
      * Get the adjacent positions of a given position
      *
-     * @param Position $position The position of the cell
-	 * 
+     *
      * @return array<Position> An array of adjacent positions
      */
     public function get_adjacent_positions( Position $current_position ) : array {
         $positions = [];
 
         // Top left
-		if ($current_position->x > 0 && $current_position->y > 0) {
-			$positions[] = new Position($current_position->x - 1, $current_position->y - 1);
-		}
+        if ( $current_position->x > 0 && $current_position->y > 0 ) {
+            $positions[] = new Position( $current_position->x - 1, $current_position->y - 1 );
+        }
 
-		// Top
-		if ($current_position->y > 0) {
-			$positions[] = new Position($current_position->x, $current_position->y - 1);
-		}
+        // Top
+        if ( $current_position->y > 0 ) {
+            $positions[] = new Position( $current_position->x, $current_position->y - 1 );
+        }
 
-		// Top right
-		if ($current_position->x < $this->max_column - 1 && $current_position->y > 0) {
-			$positions[] = new Position($current_position->x + 1, $current_position->y - 1);
-		}
+        // Top right
+        if ( $current_position->x < $this->max_column - 1 && $current_position->y > 0 ) {
+            $positions[] = new Position( $current_position->x + 1, $current_position->y - 1 );
+        }
 
-		// Left
-		if ($current_position->x > 0) {
-			$positions[] = new Position($current_position->x - 1, $current_position->y);
-		}
+        // Left
+        if ( $current_position->x > 0 ) {
+            $positions[] = new Position( $current_position->x - 1, $current_position->y );
+        }
 
-		// Right
-		if ($current_position->x < $this->max_column - 1) {
-			$positions[] = new Position($current_position->x + 1, $current_position->y);
-		}
+        // Right
+        if ( $current_position->x < $this->max_column - 1 ) {
+            $positions[] = new Position( $current_position->x + 1, $current_position->y );
+        }
 
-		// Bottom left
-		if ($current_position->x > 0 && $current_position->y < $this->max_row - 1) {
-			$positions[] = new Position($current_position->x - 1, $current_position->y + 1);
-		}
+        // Bottom left
+        if ( $current_position->x > 0 && $current_position->y < $this->max_row - 1 ) {
+            $positions[] = new Position( $current_position->x - 1, $current_position->y + 1 );
+        }
 
-		// Bottom
-		if ($current_position->y < $this->max_row - 1) {
-			$positions[] = new Position($current_position->x, $current_position->y + 1);
-		}
+        // Bottom
+        if ( $current_position->y < $this->max_row - 1 ) {
+            $positions[] = new Position( $current_position->x, $current_position->y + 1 );
+        }
 
-		// Bottom right
-		if ($current_position->x < $this->max_column - 1 && $current_position->y < $this->max_row - 1) {
-			$positions[] = new Position($current_position->x + 1, $current_position->y + 1);
-		}
+        // Bottom right
+        if ( $current_position->x < $this->max_column - 1 && $current_position->y < $this->max_row - 1 ) {
+            $positions[] = new Position( $current_position->x + 1, $current_position->y + 1 );
+        }
 
         return $positions;
     }

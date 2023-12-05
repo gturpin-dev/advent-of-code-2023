@@ -9,28 +9,28 @@ final class GridNumber {
     public const SYMBOLS = ['*', '/', '=', '#', '-', '&', '+', '@', '$', '%'];
 
     /**
-     * @param int   $value        The number value
+     * @param int             $value        The number value
      * @param array<Position> $positions    The number digits positions
-     * @param Grid  $related_grid The grid where the number is
+     * @param Grid            $related_grid The grid where the number is
      */
     public function __construct(
-		/**
-		 * The number value
-		 */
-		protected int $value,
+        /**
+         * The number value
+         */
+        protected int $value,
 
-		/**
-		 * The number digits positions
-		 * 
-		 * @var array<Position>
-		 */
-		protected array $positions,
+        /**
+         * The number digits positions
+         *
+         * @var array<Position>
+         */
+        protected array $positions,
 
-		/**
-		 * The grid where the number is
-		 */
-		protected Grid $related_grid
-	) {}
+        /**
+         * The grid where the number is
+         */
+        protected Grid $related_grid
+    ) {}
 
     /**
      * Check if a number is a part number
