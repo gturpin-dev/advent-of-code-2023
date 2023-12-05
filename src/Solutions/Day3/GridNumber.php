@@ -9,30 +9,28 @@ final class GridNumber {
     public const SYMBOLS = ['*', '/', '=', '#', '-', '&', '+', '@', '$', '%'];
 
     /**
-     * The number value
-     */
-    protected int $value;
-
-    /**
-     * The number digits positions
-     */
-    protected array $positions;
-
-    /**
-     * The grid where the number is
-     */
-    protected Grid $related_grid;
-
-    /**
      * @param int   $value        The number value
-     * @param array $positions    The number digits positions
+     * @param array<Position> $positions    The number digits positions
      * @param Grid  $related_grid The grid where the number is
      */
-    public function __construct( int $value, array $positions, Grid $related_grid ) {
-        $this->value        = $value;
-        $this->positions    = $positions;
-        $this->related_grid = $related_grid;
-    }
+    public function __construct(
+		/**
+		 * The number value
+		 */
+		protected int $value,
+
+		/**
+		 * The number digits positions
+		 * 
+		 * @var array<Position>
+		 */
+		protected array $positions,
+
+		/**
+		 * The grid where the number is
+		 */
+		protected Grid $related_grid
+	) {}
 
     /**
      * Check if a number is a part number
@@ -43,7 +41,7 @@ final class GridNumber {
     public function is_part_number() : bool {
         $adjacent_cells = [];
         foreach ( $this->positions as $position ) {
-            $adjacent_cells = array_merge( $adjacent_cells, $this->related_grid->get_adjacent_cells( $position[0], $position[1] ) );
+            $adjacent_cells = array_merge( $adjacent_cells, $this->related_grid->get_adjacent_cells( $position ) );
         }
 
         $adjacent_symbols = array_filter( $adjacent_cells, fn ( $cell_value ) => self::is_symbol( $cell_value ) );

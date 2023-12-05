@@ -37,18 +37,18 @@ final class Grid {
     /**
      * Get a specific cell value
      *
-     * @param  int    $column The column number ( like X )
-     * @param  int    $row    The row number    ( like Y )
-     * @return string The cell value
-     *
+	 * @param Position $position The position of the cell
+	 * 
      * @throws OutOfBoundsException If the cell is out of bounds
+     *
+     * @return string The cell value
      */
-    public function get_cell( int $column, int $row ) : string {
-        if ( ! isset( $this->data[$row] ) || ! isset( $this->data[$row][$column] ) ) {
-            throw new OutOfBoundsException( sprintf( 'The cell (%d,%d) is out of bounds', $column, $row ) );
+    public function get_cell( Position $position ) : string {
+        if ( ! isset( $this->data[$position->y] ) || ! isset( $this->data[$position->y][$position->x] ) ) {
+            throw new OutOfBoundsException( sprintf( 'The cell (%d,%d) is out of bounds', $position->x, $position->y ) );
         }
 
-        return $this->data[$row][$column];
+        return $this->data[$position->y][$position->x];
     }
 
     /**
@@ -69,7 +69,7 @@ final class Grid {
                 // If the digit is a number we start writing the number and store its positions
                 if ( is_numeric( $digit ) ) {
                     $number .= $digit;
-                    $positions[] = [$column_index, $row_index];
+                    $positions[] = new Position( $column_index, $row_index );
                 } else {
 
                     // If not a number, if we have a number in progress we store it and reset the number and positions
@@ -93,65 +93,65 @@ final class Grid {
     /**
      * Get a specific cell value
      *
-     * @param  int           $column The column number ( like X )
-     * @param  int           $row    The row number    ( like Y )
+     * @param Position $position The position of the cell
+	 * 
      * @return array<string> An array of cell values
      */
-    public function get_adjacent_cells( int $column, int $row ) : array {
-        $adjacent_positions = $this->get_adjacent_positions( $column, $row );
+    public function get_adjacent_cells( Position $position ) : array {
+        $adjacent_positions = $this->get_adjacent_positions( $position );
 
-        return array_map( fn ( $position ) => $this->get_cell( $position[0], $position[1] ), $adjacent_positions );
+        return array_map( fn ( Position $position ) => $this->get_cell( $position ), $adjacent_positions );
     }
 
     /**
      * Get the adjacent positions of a given position
      *
-     * @param  int               $column The column number ( like X )
-     * @param  int               $row    The row number    ( like Y )
-     * @return array<array<int>>
+     * @param Position $position The position of the cell
+	 * 
+     * @return array<Position> An array of adjacent positions
      */
-    public function get_adjacent_positions( int $column, int $row ) : array {
+    public function get_adjacent_positions( Position $current_position ) : array {
         $positions = [];
 
         // Top left
-        if ( $column > 0 && $row > 0 ) {
-            $positions[] = [$column - 1, $row - 1];
-        }
+		if ($current_position->x > 0 && $current_position->y > 0) {
+			$positions[] = new Position($current_position->x - 1, $current_position->y - 1);
+		}
 
-        // Top
-        if ( $row > 0 ) {
-            $positions[] = [$column, $row - 1];
-        }
+		// Top
+		if ($current_position->y > 0) {
+			$positions[] = new Position($current_position->x, $current_position->y - 1);
+		}
 
-        // Top right
-        if ( $column < $this->max_column - 1 && $row > 0 ) {
-            $positions[] = [$column + 1, $row - 1];
-        }
+		// Top right
+		if ($current_position->x < $this->max_column - 1 && $current_position->y > 0) {
+			$positions[] = new Position($current_position->x + 1, $current_position->y - 1);
+		}
 
-        // Left
-        if ( $column > 0 ) {
-            $positions[] = [$column - 1, $row];
-        }
+		// Left
+		if ($current_position->x > 0) {
+			$positions[] = new Position($current_position->x - 1, $current_position->y);
+		}
 
-        // Right
-        if ( $column < $this->max_column - 1 ) {
-            $positions[] = [$column + 1, $row];
-        }
+		// Right
+		if ($current_position->x < $this->max_column - 1) {
+			$positions[] = new Position($current_position->x + 1, $current_position->y);
+		}
 
-        // Bottom left
-        if ( $column > 0 && $row < $this->max_row - 1 ) {
-            $positions[] = [$column - 1, $row + 1];
-        }
+		// Bottom left
+		if ($current_position->x > 0 && $current_position->y < $this->max_row - 1) {
+			$positions[] = new Position($current_position->x - 1, $current_position->y + 1);
+		}
 
-        // Bottom
-        if ( $row < $this->max_row - 1 ) {
-            $positions[] = [$column, $row + 1];
-        }
+		// Bottom
+		if ($current_position->y < $this->max_row - 1) {
+			$positions[] = new Position($current_position->x, $current_position->y + 1);
+		}
 
-        // Bottom right
-        if ( $column < $this->max_column - 1 && $row < $this->max_row - 1 ) {
-            $positions[] = [$column + 1, $row + 1];
-        }
+		// Bottom right
+		if ($current_position->x < $this->max_column - 1 && $current_position->y < $this->max_row - 1) {
+			$positions[] = new Position($current_position->x + 1, $current_position->y + 1);
+		}
 
         return $positions;
     }
