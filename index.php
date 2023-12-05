@@ -3,6 +3,7 @@
 use App\Services\SolutionFactory;
 use App\Solutions\Day1\Day1;
 use App\Solutions\Day2\Day2;
+use App\Solutions\Day3\Day3;
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -11,4 +12,4 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 $factory = new SolutionFactory();
-$factory->solve( Day2::class );
+$factory->solve( Day3::class );
