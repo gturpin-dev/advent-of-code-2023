@@ -23,9 +23,9 @@ final class Day3 extends Day {
         $grid         = new Grid( $data );
         $grid_numbers = $grid->find_numbers();
         $part_numbers = array_filter( $grid_numbers, fn ( $number ) => $number->is_part_number() );
-        $result       = array_reduce( $part_numbers, fn ( $total, GridNumber $part_number ) => $total += $part_number->get_value(), 0 );
+        $result       = array_reduce( $part_numbers, fn ( $total, GridNumber $part_number ) => $total + $part_number->get_value(), 0 );
 
-        return $result;
+        return (string) $result;
     }
 
     /**
