@@ -57,16 +57,6 @@ final class GridNumber {
      * @param string $cell_value The cell value
      */
     public static function is_symbol( string $cell_value ) : bool {
-
-        if ( $cell_value === '.' ) {
-            return false;
-        }
-        if ( is_numeric( $cell_value ) ) {
-            return false;
-        }
-
-        return true;
-
         return in_array( $cell_value, self::SYMBOLS );
     }
 

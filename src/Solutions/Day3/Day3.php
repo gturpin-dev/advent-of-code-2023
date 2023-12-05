@@ -18,7 +18,6 @@ final class Day3 extends Day {
      * Solution for part 1
      */
     public function part1() : string {
-        // self::$DATASET = self::DATA_SAMPLE_PART1;
         $data = $this->get_data();
 
         $grid         = new Grid( $data );
