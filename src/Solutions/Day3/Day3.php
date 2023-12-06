@@ -22,7 +22,7 @@ final class Day3 extends Day {
 
         $grid         = new Grid( $data );
         $grid_numbers = $grid->find_numbers();
-        $part_numbers = array_filter( $grid_numbers, fn ( $number ) => $number->is_part_number() );
+        $part_numbers = array_filter( $grid_numbers, fn ( GridNumber $number ) => $number->is_part_number() );
         $result       = array_reduce( $part_numbers, fn ( $total, GridNumber $part_number ) => $total + $part_number->get_value(), 0 );
 
         return (string) $result;
@@ -33,8 +33,12 @@ final class Day3 extends Day {
      */
     public function part2() : string {
         $data = $this->get_data();
-        dump( $data );
 
-        return 'Part 2';
+		$grid         = new Grid( $data );
+		$gears        = $grid->find_gears();
+		$gears        = array_filter( $gears, fn ( Gear $gear ) => $gear->is_valid() );
+		$result       = array_reduce( $gears, fn ( $total, Gear $gear ) => $total + $gear->get_ratio(), 0 );
+
+		return $result;
     }
 }
