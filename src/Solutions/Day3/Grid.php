@@ -89,24 +89,24 @@ final class Grid {
         return $numbers;
     }
 
-	/**
-	 * Retrieve every gears in the grid
-	 *
-	 * @return array<Gear> An array of gears
-	 */
-	public function find_gears(): array {
-		$gears = [];
+    /**
+     * Retrieve every gears in the grid
+     *
+     * @return array<Gear> An array of gears
+     */
+    public function find_gears() : array {
+        $gears = [];
 
-		foreach ( $this->data as $row_index => $row ) {
-			foreach ( $row as $column_index => $cell_value ) {
-				if ( $cell_value === Gear::SYMBOL ) {
-					$gears[] = new Gear( new Position( $column_index, $row_index ), $this );
-				}
-			}
-		}
+        foreach ( $this->data as $row_index => $row ) {
+            foreach ( $row as $column_index => $cell_value ) {
+                if ( $cell_value === Gear::SYMBOL ) {
+                    $gears[] = new Gear( new Position( $column_index, $row_index ), $this );
+                }
+            }
+        }
 
-		return $gears;
-	}
+        return $gears;
+    }
 
     /**
      * Get a specific cell value

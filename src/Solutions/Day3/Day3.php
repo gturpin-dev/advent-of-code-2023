@@ -34,11 +34,11 @@ final class Day3 extends Day {
     public function part2() : string {
         $data = $this->get_data();
 
-		$grid         = new Grid( $data );
-		$gears        = $grid->find_gears();
-		$gears        = array_filter( $gears, fn ( Gear $gear ) => $gear->is_valid() );
-		$result       = array_reduce( $gears, fn ( $total, Gear $gear ) => $total + $gear->get_ratio(), 0 );
+        $grid   = new Grid( $data );
+        $gears  = $grid->find_gears();
+        $gears  = array_filter( $gears, fn ( Gear $gear ) => $gear->is_valid() );
+        $result = array_reduce( $gears, fn ( $total, Gear $gear ) => $total + $gear->get_ratio(), 0 );
 
-		return $result;
+        return (string) $result;
     }
 }
