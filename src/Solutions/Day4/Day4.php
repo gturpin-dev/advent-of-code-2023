@@ -18,16 +18,9 @@ final class Day4 extends Day {
 	 * Solution for part 1
 	 */
 	public function part1(): string {
-        // self::$DATASET = self::DATA_SAMPLE_PART1;
 		$data = $this->get_data();
-		// dump( $data );
 
         $cards  = array_map( fn( $card ) => ScratchCard::from_raw( $card ), $data );
-
-        foreach ($cards as $id => $card) {
-            // echo $card->get_points() . " => " . $id . "<br>";
-        }
-
         $result = array_reduce( $cards, fn( $total, $card ) => $total + $card->get_points(), 0 );
 
 		return (string) $result;
