@@ -64,7 +64,7 @@ final class ScratchCard {
      *
      * @return array<int>
      */
-    protected function get_winning_numbers(): array {
+    public function get_winning_numbers(): array {
         return array_intersect( $this->card_numbers, $this->winnable_numbers );
     }
 
@@ -85,5 +85,14 @@ final class ScratchCard {
         $card_points = pow( 2, $winning_number_count - 1 );
 
         return $card_points;
+    }
+
+    /**
+     * Get the card id
+     *
+     * @return integer
+     */
+    public function get_id(): int {
+        return $this->id;
     }
 }
