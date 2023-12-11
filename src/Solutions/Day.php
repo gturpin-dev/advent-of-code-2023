@@ -63,7 +63,7 @@ abstract class Day {
         $filename   = dirname( __DIR__, 2 ) . '/data/day' . $day_number . '/' . static::$DATASET;
         $data       = Reader::get_data( $filename, $day_number );
         // Remove the last empty line if it's null
-        if ( null === end( $data ) ) {
+        if ( end( $data ) === null ) {
             array_pop( $data );
         }
 
