@@ -56,6 +56,9 @@ final class Day5 extends Day {
         // Find the lowest location number of the seeds
         $result = min( $location_numbers );
 
+        /**
+         * @psalm-suppress PossiblyInvalidCast as the result is always an int, it can be safely casted to string
+         */
         return (string) $result;
 	}
 

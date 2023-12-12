@@ -21,7 +21,12 @@ final class NumberConverterPipeline {
      *
      * @return self
      */
-    public function pipe( Map $map ) : self {
+    public function pipe( ?Map $map ) : self {
+        // If the map is null, do nothing
+        if ( is_null( $map ) ) {
+            return $this;
+        }
+
         $this->maps[] = $map;
 
         return $this;

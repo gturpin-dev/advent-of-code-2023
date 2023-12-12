@@ -22,7 +22,7 @@ final class Map {
         /**
          * The correspondances for the map
          *
-         * @var array<array<string, Range>> each sub array contains the 'source' and 'destination' key that contains a Range
+         * @var array<Correspondance>
          */
         protected array $correspondances = []
     ) {}
@@ -45,10 +45,10 @@ final class Map {
 
         // Getting all correspondances formulas from raw data
         $correspondances = array_map(function ($formula) {
-            [$destination_range_start, $source_range_start, $range_length] = explode(' ', trim($formula));
+            [$destination_range_start, $source_range_start, $range_length] = array_map( 'intval', explode(' ', trim($formula)));
 
-            $range_source_end = $source_range_start + ($range_length - 1);
-            $range_dest_end   = $destination_range_start + ($range_length - 1);
+            $range_source_end = ( $source_range_start ) + ( $range_length - 1);
+            $range_dest_end   = ( $destination_range_start ) + ( $range_length - 1);
 
             return new Correspondance(
                 new Range( $source_range_start, $range_source_end ),

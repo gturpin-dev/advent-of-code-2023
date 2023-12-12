@@ -6,6 +6,8 @@ use App\Solutions\Day5\Seed;
 
 /**
  * Modelize a collection of seeds
+ *
+ * @extends \ArrayObject<array-key, Seed>
  */
 final class SeedCollection extends \ArrayObject {
     public function __construct(
@@ -30,7 +32,7 @@ final class SeedCollection extends \ArrayObject {
         $raw_data = str_replace( 'seeds: ', '', $raw_data );
         $raw_data = trim( $raw_data );
         $raw_data = explode( ' ', $raw_data );
-        $seeds    = array_map( fn( $seed ) => new Seed( $seed ), $raw_data );
+        $seeds    = array_map( fn( $seed ) => new Seed( (int) $seed ), $raw_data );
 
         return new self( $seeds );
     }
