@@ -50,10 +50,10 @@ final class Map {
             $range_source_end = $source_range_start + ($range_length - 1);
             $range_dest_end   = $destination_range_start + ($range_length - 1);
 
-            return [
-                'source'      => new Range( $source_range_start, $range_source_end ),
-                'destination' => new Range( $destination_range_start, $range_dest_end )
-            ];
+            return new Correspondance(
+                new Range( $source_range_start, $range_source_end ),
+                new Range( $destination_range_start, $range_dest_end )
+            );
         }, $raw_data);
 
 
@@ -69,18 +69,9 @@ final class Map {
      */
     public function process( int $number ) : int {
         foreach ($this->correspondances as $correspondance) {
-            if ( $correspondance['source']->contains($number) ) {
-                $offset = $number - $correspondance['source']->get_start();
-
-                return $correspondance['destination']->get_start() + $offset;
+            if ( $correspondance->can_handle( $number ) ) {
+                return $correspondance->convert( $number );
             }
-
-            // $processed_number = $correspondance->maybe_process( $number );
-
-            // // If a correspondance is found, return the processed number
-            // if ( $processed_number !== $number ) {
-            //     return $processed_number;
-            // }
         }
 
         // If no correspondance is found, return the initial value
