@@ -21,14 +21,11 @@ final class Day5 extends Day {
 	 * Solution for part 1
 	 */
 	public function part1(): string {
-        // self::$DATASET = self::DATA_SAMPLE_PART1;
 		$data = $this->get_data();
-		dump( $data );
 
+        // Get the seeds
         $seeds = array_shift( $data );
         $seeds = SeedCollection::from_raw( $seeds );
-
-        dump( $seeds );
 
         // Create chunks of maps @TODO migrate this to the Reader Service because it could be useful for other days
         $chunks = array_reduce( $data, function( $chunks, $item ) {
@@ -42,13 +39,9 @@ final class Day5 extends Day {
         }, [] );
         $chunks = array_values( $chunks );
 
-        dump( $chunks );
-
+        // Create maps from chunks
         $maps = array_map( fn( $chunk ) => Map::from_raw( $chunk ), $chunks );
         $maps = new MapCollection( $maps );
-
-        dump( $maps );
-        // die;
 
         // Set a pipeline of maps to process a seed
 		$pipeline = ( new NumberConverterPipeline )
@@ -61,17 +54,14 @@ final class Day5 extends Day {
 			->pipe( $maps->get( 'humidity', 'location' ) )
         ;
 
-        // Process all seeds
+        // Process all seeds to get the location numbers
         $location_numbers = array_reduce( $seeds->getArrayCopy(), function( $location_numbers, $seed ) use ( $pipeline ) {
             $location_numbers[] = $pipeline->process( $seed->get_number() );
 
             return $location_numbers;
         }, [] );
 
-        dump( $location_numbers );
-        // die;
-
-        // Then find the lowest location number of the seeds and return it
+        // Find the lowest location number of the seeds
         $result = min( $location_numbers );
 
         return (string) $result;
