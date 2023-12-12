@@ -29,4 +29,28 @@ final class Reader {
 
         return $data;
     }
+
+    /**
+     * Parse an array of data into chunks
+     * A chunk is an array of lines
+     * Each chunk are separated by a null value in the data array
+     *
+     * @param array<?string> $data The data to parse
+     *
+     * @return array<array>> The parsed chunk data
+     */
+    public static function parse_chunks( array $data ) : array {
+        $chunks = array_reduce( $data, function( $chunks, $item ) {
+            if ( ! is_null( $item ) ) {
+                $chunks[array_key_last( $chunks )][] = $item;
+            } else {
+                $chunks[] = [];
+            }
+
+            return $chunks;
+        }, [] );
+
+        // Ensure to reorder the keys if the first line is not null
+        return array_values( $chunks );
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Solutions\Day5;
 
 use App\Solutions\Day;
+use App\Services\Reader;
 use App\Solutions\Day5\Map;
 use App\Solutions\Day5\MapCollection;
 use App\Solutions\Day5\NumberConverterPipeline;
@@ -27,17 +28,8 @@ final class Day5 extends Day {
         $seeds = array_shift( $data );
         $seeds = SeedCollection::from_raw( $seeds );
 
-        // Create chunks of maps @TODO migrate this to the Reader Service because it could be useful for other days
-        $chunks = array_reduce( $data, function( $chunks, $item ) {
-            if ( ! is_null( $item ) ) {
-                $chunks[array_key_last( $chunks )][] = $item;
-            } else {
-                $chunks[] = [];
-            }
-
-            return $chunks;
-        }, [] );
-        $chunks = array_values( $chunks );
+        // Create chunks of maps from data
+        $chunks = Reader::parse_chunks( $data );
 
         // Create maps from chunks
         $maps = array_map( fn( $chunk ) => Map::from_raw( $chunk ), $chunks );
