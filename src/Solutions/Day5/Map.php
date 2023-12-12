@@ -31,10 +31,8 @@ final class Map {
      * Parse raw data to create a map
      *
      * @param array<string> $raw_data The raw data to parse
-     * The first line will be the definition of source and destination categories
-     * The next lines will be the correspondances formulas
-     *
-     * @return self
+     *                                The first line will be the definition of source and destination categories
+     *                                The next lines will be the correspondances formulas
      */
     public static function from_raw( array $raw_data ) : self {
         // Parse the map definition
@@ -44,18 +42,17 @@ final class Map {
         $destination_category = $matches[2] ?? '';
 
         // Getting all correspondances formulas from raw data
-        $correspondances = array_map(function ($formula) {
-            [$destination_range_start, $source_range_start, $range_length] = array_map( 'intval', explode(' ', trim($formula)));
+        $correspondances = array_map( function ( $formula ) {
+            [$destination_range_start, $source_range_start, $range_length] = array_map( 'intval', explode( ' ', trim( $formula ) ) );
 
-            $range_source_end = ( $source_range_start ) + ( $range_length - 1);
-            $range_dest_end   = ( $destination_range_start ) + ( $range_length - 1);
+            $range_source_end = ( $source_range_start ) + ( $range_length - 1 );
+            $range_dest_end   = ( $destination_range_start ) + ( $range_length - 1 );
 
             return new Correspondance(
                 new Range( $source_range_start, $range_source_end ),
                 new Range( $destination_range_start, $range_dest_end )
             );
-        }, $raw_data);
-
+        }, $raw_data );
 
         return new self( $source_category, $destination_category, $correspondances );
     }
@@ -64,11 +61,9 @@ final class Map {
      * Process a number through the map
      *
      * @param int $number The number to process
-     *
-     * @return int
      */
     public function process( int $number ) : int {
-        foreach ($this->correspondances as $correspondance) {
+        foreach ( $this->correspondances as $correspondance ) {
             if ( $correspondance->can_handle( $number ) ) {
                 return $correspondance->convert( $number );
             }
@@ -80,19 +75,15 @@ final class Map {
 
     /**
      * Get the source category of the map
-     *
-     * @return string
      */
-    public function get_source_category(): string {
+    public function get_source_category() : string {
         return $this->source_category;
     }
 
     /**
      * Get the destination category of the map
-     *
-     * @return string
      */
-    public function get_destination_category(): string {
+    public function get_destination_category() : string {
         return $this->destination_category;
     }
 }

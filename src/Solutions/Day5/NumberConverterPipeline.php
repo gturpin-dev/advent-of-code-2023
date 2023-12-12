@@ -18,8 +18,6 @@ final class NumberConverterPipeline {
      * Add a map to the pipeline
      *
      * @param Map $map The map to add
-     *
-     * @return self
      */
     public function pipe( ?Map $map ) : self {
         // If the map is null, do nothing
@@ -36,8 +34,6 @@ final class NumberConverterPipeline {
      * Process a number through the pipeline
      *
      * @param int $number The number to process
-     *
-     * @return int
      */
     public function process( int $number ) : int {
         foreach ( $this->maps as $map ) {

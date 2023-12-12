@@ -10,7 +10,7 @@ final class Seed {
         protected readonly int $number
     ) {}
 
-    public function get_number(): int {
+    public function get_number() : int {
         return $this->number;
     }
 }

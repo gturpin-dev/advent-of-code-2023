@@ -14,22 +14,19 @@ final class Correspondance {
     /**
      * Weither a number can be handled by the correspondance
      *
-     * @param integer $number The number to check
-     *
-     * @return boolean
+     * @param int $number The number to check
      */
-    public function can_handle(int $number): bool {
-        return $this->source->contains($number);
+    public function can_handle( int $number ) : bool {
+        return $this->source->contains( $number );
     }
 
     /**
      * Convert the number from the source to the destination range
      *
-     * @param integer $number The number to convert
-     *
-     * @return integer The converted number
+     * @param  int $number The number to convert
+     * @return int The converted number
      */
-    public function convert(int $number): int {
+    public function convert( int $number ) : int {
         $offset = $number - $this->source->get_start();
 
         return $this->destination->get_start() + $offset;

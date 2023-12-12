@@ -14,19 +14,17 @@ final class Range {
     /**
      * Weither a number is contained in the range
      *
-     * @param integer $number The number to check
-     *
-     * @return boolean
+     * @param int $number The number to check
      */
-    public function contains( int $number ): bool {
+    public function contains( int $number ) : bool {
         return $number >= $this->start && $number <= $this->end;
     }
 
-    public function get_start(): int {
+    public function get_start() : int {
         return $this->start;
     }
 
-    public function get_end(): int {
+    public function get_end() : int {
         return $this->end;
     }
 }
