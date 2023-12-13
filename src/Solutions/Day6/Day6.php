@@ -11,29 +11,29 @@ use phpDocumentor\Reflection\Types\ArrayKey;
  * https://adventofcode.com/2023/day/6
  */
 final class Day6 extends Day {
-	/**
-	 * The day number
-	 */
-	public static int $day = 6;
+    /**
+     * The day number
+     */
+    public static int $day = 6;
 
-	/**
-	 * Solution for part 1
-	 */
-	public function part1(): string {
-		$data   = $this->get_data();
+    /**
+     * Solution for part 1
+     */
+    public function part1() : string {
+        $data   = $this->get_data();
         $races  = RaceCollection::from_raw( $data );
         $result = $races->count_ways_to_win();
 
-		return (string) $result;
-	}
+        return (string) $result;
+    }
 
-	/**
-	 * Solution for part 2
-	 */
-	public function part2(): string {
-		$data = $this->get_data();
-		dump( $data );
+    /**
+     * Solution for part 2
+     */
+    public function part2() : string {
+        $data = $this->get_data();
+        dump( $data );
 
-		return 'Part 2';
-	}
+        return 'Part 2';
+    }
 }

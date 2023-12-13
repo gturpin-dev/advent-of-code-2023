@@ -14,13 +14,11 @@ final class Race {
     /**
      * Count number of ways to win
      * A way to win is a strategy to beat the record of distance in a race
-     *
-     * @return integer
      */
-    public function count_ways_to_win(): int {
+    public function count_ways_to_win() : int {
         $ways_to_try = range( 1, $this->time );
 
-        $ways_to_win = array_filter( $ways_to_try, function( $button_duration ) {
+        $ways_to_win = array_filter( $ways_to_try, function ( $button_duration ) {
             $distance_to_beat = $this->distance;
             $speed            = $button_duration;
 
