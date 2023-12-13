@@ -28,10 +28,10 @@ final class RaceCollection {
         $distance_line = array_shift( $raw_data );
 
         preg_match_all( '/\d+/', $time_line, $times );
-        $times = $times[0] ?? [];
+        $times = array_map( 'intval', $times[0] ?? [] );
 
         preg_match_all( '/\d+/', $distance_line, $distances );
-        $distances = $distances[0] ?? [];
+        $distances = array_map( 'intval', $distances[0] ?? [] );
 
         // Create new Races from the times and distances
         $races = array_map( function( $time, $index ) use ( $distances ) {

@@ -24,7 +24,7 @@ final class Day6 extends Day {
         $races  = RaceCollection::from_raw( $data );
         $result = $races->count_ways_to_win();
 
-		return $result;
+		return (string) $result;
 	}
 
 	/**
