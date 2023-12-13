@@ -4,20 +4,16 @@ namespace App\Solutions\Day6;
 
 /**
  * Modelize a collection of Race
- *
- * @extends \ArrayObject<array-key, Race>
  */
-final class RaceCollection extends \ArrayObject {
+final class RaceCollection {
     public function __construct(
         /**
          * The races in the collection
          *
          * @var array<Race>
          */
-        array $races = []
-    ) {
-        parent::__construct( $races );
-    }
+        protected readonly array $races = []
+    ) {}
 
     /**
      * Parse raw data to create a collection of Races
@@ -53,6 +49,6 @@ final class RaceCollection extends \ArrayObject {
      * @return integer
      */
     public function count_ways_to_win(): int {
-        return array_reduce( $this->getArrayCopy(), fn ( $total, $race ) => $total * $race->count_ways_to_win(), 1 );
+        return array_reduce( $this->races, fn ( $total, $race ) => $total * $race->count_ways_to_win(), 1 );
     }
 }
