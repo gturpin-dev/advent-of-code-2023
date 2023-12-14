@@ -39,10 +39,8 @@ final class Race {
      *
      * @param array<string> $raw_data The raw data to parse
      *                                The raw data must be and array of two string
-     *
-     * @return self
      */
-    public static function from_raw_with_good_kerning( array $raw_data ): self {
+    public static function from_raw_with_good_kerning( array $raw_data ) : self {
         $time_line     = array_shift( $raw_data );
         $distance_line = array_shift( $raw_data );
 
