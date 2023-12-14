@@ -31,9 +31,10 @@ final class Day6 extends Day {
      * Solution for part 2
      */
     public function part2() : string {
-        $data = $this->get_data();
-        dump( $data );
+        $data   = $this->get_data();
+        $race   = Race::from_raw_with_good_kerning( $data );
+        $result = $race->count_ways_to_win();
 
-        return 'Part 2';
+        return (string) $result;
     }
 }

@@ -33,4 +33,28 @@ final class Race {
 
         return count( $ways_to_win );
     }
+
+    /**
+     * Parse raw data to create a Race
+     *
+     * @param array<string> $raw_data The raw data to parse
+     *                                The raw data must be and array of two string
+     *
+     * @return self
+     */
+    public static function from_raw_with_good_kerning( array $raw_data ): self {
+        $time_line     = array_shift( $raw_data );
+        $distance_line = array_shift( $raw_data );
+
+        preg_match_all( '/\d+/', $time_line, $times );
+        $times = array_map( 'intval', $times[0] ?? [] );
+
+        preg_match_all( '/\d+/', $distance_line, $distances );
+        $distances = array_map( 'intval', $distances[0] ?? [] );
+
+        $time     = implode( '', $times );
+        $distance = implode( '', $distances );
+
+        return new self( $time, $distance );
+    }
 }
