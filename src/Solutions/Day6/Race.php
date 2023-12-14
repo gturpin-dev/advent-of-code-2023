@@ -52,8 +52,8 @@ final class Race {
         preg_match_all( '/\d+/', $distance_line, $distances );
         $distances = array_map( 'intval', $distances[0] ?? [] );
 
-        $time     = implode( '', $times );
-        $distance = implode( '', $distances );
+        $time     = (int) implode( '', $times );
+        $distance = (int) implode( '', $distances );
 
         return new self( $time, $distance );
     }
