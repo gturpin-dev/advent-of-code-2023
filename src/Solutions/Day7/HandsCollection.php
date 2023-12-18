@@ -20,11 +20,9 @@ final class HandsCollection {
      * Firstly by their type, then if equals by their card value first to last
      * It will set the hands "rank" to the key of the array
      * The first hand will have the rank 1, the second 2, etc...
-     *
-     * @return void
      */
-    public function sort(): void {
-        usort( $this->hands, function( Hand $hand_a, Hand $hand_b ) {
+    public function sort() : void {
+        usort( $this->hands, function ( Hand $hand_a, Hand $hand_b ) {
             $hand_a_type = $hand_a->get_type();
             $hand_b_type = $hand_b->get_type();
             $comparison  = HandType::compare( $hand_a_type, $hand_b_type );
@@ -40,8 +38,8 @@ final class HandsCollection {
 
             // For each index of the hand, compare the card of both hands
             for ( $i = 0; $i < count( $hand_a_cards ); $i++ ) {
-                $card_a          = $hand_a_cards[ $i ];
-                $card_b          = $hand_b_cards[ $i ];
+                $card_a          = $hand_a_cards[$i];
+                $card_b          = $hand_b_cards[$i];
                 $card_comparison = Card::compare( $card_a, $card_b );
 
                 // If the cards are not equals, end the comparison
@@ -63,11 +61,9 @@ final class HandsCollection {
 
     /**
      * Calculate the winning score of the set of hands
-     *
-     * @return integer
      */
-    public function get_winning_score(): int {
-        $result = array_reduce( $this->get_keys(), function( int $total_winning, int $hand_rank ) {
+    public function get_winning_score() : int {
+        $result = array_reduce( $this->get_keys(), function ( int $total_winning, int $hand_rank ) {
             $hand  = $this->get_hand( $hand_rank );
             $score = $hand_rank * $hand->get_bid();
 
@@ -81,11 +77,9 @@ final class HandsCollection {
      * Get the hand with the given key
      *
      * @param int $key The key of the hand
-     *
-     * @return Hand
      */
-    public function get_hand( int $key ): Hand {
-        return $this->hands[ $key ];
+    public function get_hand( int $key ) : Hand {
+        return $this->hands[$key];
     }
 
     /**
@@ -93,7 +87,7 @@ final class HandsCollection {
      *
      * @return array<int>
      */
-    public function get_keys(): array {
+    public function get_keys() : array {
         return array_keys( $this->hands );
     }
 }

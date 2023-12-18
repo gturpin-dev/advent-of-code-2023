@@ -9,23 +9,22 @@ use App\Solutions\Day;
  * https://adventofcode.com/2023/day/8
  */
 final class Day8 extends Day {
-	/**
-	 * The day number
-	 */
-	public static int $day = 8;
+    /**
+     * The day number
+     */
+    public static int $day = 8;
 
-	/**
-	 * Solution for part 1
-	 */
-	public function part1(): string {
-        // self::$DATASET = 'sample_part1-2.txt';
-        $data          = $this->get_data();
-        $data          = array_filter( $data );                                                                   // remove null values
-        $instructions  = array_shift( $data );
-        $instructions  = str_split( $instructions );
-        $instructions  = array_map( fn( $instruction ) => Instruction::tryFrom( $instruction ), $instructions );
+    /**
+     * Solution for part 1
+     */
+    public function part1() : string {
+        $data         = $this->get_data();
+        $data         = array_filter( $data );                                                                   // remove null values
+        $instructions = array_shift( $data );
+        $instructions = str_split( $instructions );
+        $instructions = array_map( fn ( $instruction ) => Instruction::tryFrom( $instruction ), $instructions );
 
-        $nodes           = array_map( fn( $node ) => Node::from_raw( $node ), $data );
+        $nodes           = array_map( fn ( $node ) => Node::from_raw( $node ), $data );
         $node_collection = new NodeCollection( $nodes );
         $node_value      = $node_collection->get_node( 'AAA' ); // Always start at AAA
         $node_value      = $node_value?->get_value();
@@ -39,17 +38,17 @@ final class Day8 extends Day {
             $step++;
         }
 
-		return (string) $step;
-	}
+        return (string) $step;
+    }
 
-	/**
-	 * Solution for part 2
-	 */
-	public function part2(): string {
+    /**
+     * Solution for part 2
+     */
+    public function part2() : string {
         self::$DATASET = self::DATA_SAMPLE_PART2;
-		$data = $this->get_data();
-		dump( $data );
+        $data          = $this->get_data();
+        dump( $data );
 
-		return 'Part 2';
-	}
+        return 'Part 2';
+    }
 }

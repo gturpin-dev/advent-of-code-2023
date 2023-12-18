@@ -2,7 +2,7 @@
 
 namespace App\Solutions\Day7;
 
-enum Card: string {
+enum Card : string {
     case ACE   = 'A';
     case KING  = 'K';
     case QUEEN = 'Q';
@@ -20,8 +20,8 @@ enum Card: string {
     /**
      * Get the strength value of the card
      */
-    public function get_value(): int {
-        return match( $this ) {
+    public function get_value() : int {
+        return match ( $this ) {
             self::ACE   => 14,
             self::KING  => 13,
             self::QUEEN => 12,
@@ -40,11 +40,8 @@ enum Card: string {
 
     /**
      * Compare two hand types
-     *
-     * @param Card $hand_type_a The first hand type
-     * @param Card $hand_type_b The second hand type
      */
-    public static function compare( Card $card_a, Card $card_b ): int {
+    public static function compare( Card $card_a, Card $card_b ) : int {
         return match ( true ) {
             $card_a->get_value() === $card_b->get_value() => 0,
             $card_a->get_value() > $card_b->get_value()   => 1,
