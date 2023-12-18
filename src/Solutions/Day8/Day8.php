@@ -28,14 +28,14 @@ final class Day8 extends Day {
         $nodes           = array_map( fn( $node ) => Node::from_raw( $node ), $data );
         $node_collection = new NodeCollection( $nodes );
         $node_value      = $node_collection->get_node( 'AAA' ); // Always start at AAA
-        $node_value      = $node_value->get_value();
+        $node_value      = $node_value?->get_value();
 
         // Perform the instructions
         $step = 0;
         while ( $node_value !== 'ZZZ' ) {
             $instruction    = array_shift( $instructions );
             $instructions[] = $instruction;
-            $node_value     = $node_collection->get_node_value( $node_value, $instruction );
+            $node_value     = $node_collection->get_node_value( $node_value ?? '', $instruction );
             $step++;
         }
 
