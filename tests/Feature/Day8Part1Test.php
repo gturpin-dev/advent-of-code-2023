@@ -16,5 +16,5 @@ it( 'returns correct result for sample data', function ( $dataset, $expected ) {
 it( 'returns correct result for part 1', function () {
     $day           = new Day8();
     $day::$DATASET = Day8::DATA_PART1;
-    expect( $day->part1() )->toBe( '' );
+    expect( $day->part1() )->toBe( '18673' );
 } );

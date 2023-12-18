@@ -7,6 +7,7 @@ use App\Solutions\Day4\Day4;
 use App\Solutions\Day5\Day5;
 use App\Solutions\Day6\Day6;
 use App\Solutions\Day7\Day7;
+use App\Solutions\Day8\Day8;
 use App\Services\SolutionFactory;
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
@@ -16,4 +17,4 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 $factory = new SolutionFactory();
-$factory->solve( Day7::class );
+$factory->solve( Day8::class );
